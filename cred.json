@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "corona-virus-710f0",
+  "private_key_id": "68f391bb3b522209c7fdf0f2b300c187552bbb79",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgX4otEWp5qgPS\nQsrgDydFvUSNjRtrNcaAJ5V87382PP3gT8ni3ISti+FmkWSrFVfZjm5bKioY4dgO\nlkPWbr4hYhI9w/WG4FaoHzTLDuxBe4UUpPdW5zhXatSoQT/zMqsKtb/+7oY8SNS3\nJIZ7XoOPOTp+4zSskDQG94iQB/oxmABlf+XETwoFtZQW8n7rTWXbfCWcWt4awvR5\nZg7FGkDhfV6/ftUU0ZfHJNSSSPI6HQoHaWu1234glo5nDut+ReyxeTuRv7QhkM3q\nH3IfTlUebquW0E+sgxVL/uhh2/oz6eTZB1A/61dSNl1hCmqbeucxgHA+K0SmcXG1\nQq9AN+GLAgMBAAECggEAAhtfOFpbOL/4DuIbwjfQv0TOSsHI027AbdyXRS3sUO0a\nNME3mMhm4dTNoEhWtzyvi8coQgBazzrgWMi2mXGZA91C+hbB+gSmfszyJ5zJk86o\nn+3O5hBhmBxqMM+ypGJNBvX+UL4Xe2FFkiZjsek69z28PACGJ6I5XMIRxDqmmdIt\nDNEZ3JkBkBzAr98Iy7U8jXz0joSO+B4luGgQrMiUge3XQadbJjjaUtQ5CIYmgGAd\ndVyHotXKaGp7CyotpHY04J0HApc0hzJ+7qYpKPZFDV9POMtxoLyScZ0SeFWcGIB/\n1qjW3CWzktQ5jEueUZbcKdlSm7nbemGLWu+SIIbIAQKBgQDg2rRIrp3EUMZ1Oss5\n6PS7XdM1bRhowFpzAQbW494Oio5Rgnxnk+u082FC44yGZ2e2uoc/dWtZNMeoD/tn\nMW5Mc74G9bb6/ePqH9DireaQgfETRRTyl7gmqGpde9iFZsPFx/Mxe/eNO1Z2zF3e\n/T0CeXcDqIMbRKjORFsQm23ViwKBgQC2llikm4eZOI6MY4VTD2tR+AIfndTlitaQ\nxEEp80veV2zEPuieZA51NSAUSP63yGpyrOyUgW0ZQ42l7N0puNFH/PEiSehHcK0m\nDS2dFWcrS86WzTkCC4QdQ6/fOA1wAsnZJbCobr/XA5uzSRpf2VtnCRAgdDe18pN+\nuhHSWZekAQKBgQCCD39Am2A+ccqZfIyYzprg1gCZYqU/0iN/ahSer+d92b9Afo2f\nC/zHChA0NJLQG3fuRi59Elopm1HxcG0m33zBVCGSvQY+YCU5A3Y76AL5i2/6iXb4\na7HlCn2b3Ur8vth2ypVtBhvG4Y+937Bcj3Z+u+uPfiV33FsYFInoLT92yQKBgHuP\nVsFeNu8rZNwAZTMGVjwMN3Op3W7Q+87P4MFA0fDO/N35LHYzg80xfFn949H/IHom\nJ5t/0pKsMmk815XqakXrGEt59GSUDbiYZmvNFhoonM9UZeXKYUdkjNnkFsPcPzhh\n1yDEgbJB0NYM/Hosnzwk1/L+cs0AMWwrAvB0jLgBAoGAEyAFyo2iEdE+fJEXwN5m\ndGZ1N3e/HR3nE+F7nXFAQb0zmCQtqV/3f4AF+UNt1ROZrlpVrphbpe0h1HcjcmPs\nS6mq5sWpvawLHXVo6Jpasks4Z6Z/YeYWvAGcsUwIwwmBxEiP+aV169rHMxy2rAPq\nEehMils7B9M12kbviThGfuQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-dw194@corona-virus-710f0.iam.gserviceaccount.com",
+  "client_id": "105778031209654692436",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-dw194%40corona-virus-710f0.iam.gserviceaccount.com"
+}
