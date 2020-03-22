@@ -3,10 +3,11 @@ from bs4 import BeautifulSoup
 import json
 import firebase_admin
 from firebase_admin import credentials, firestore
+import time
 
-import kivy
-from kivy.app import App
-from kivy.uix.button import Button
+# import kivy
+# from kivy.app import App
+# from kivy.uix.button import Button
 
 
 def get_death_rate():
@@ -44,25 +45,30 @@ def get_overview():
     overview["serious"] = serious
     return overview
 
+ # def get_usa_data():
+ # 	usa_data = {}
+ # 	url = "https://www.worldometers.info/coronavirus/country/us/"
+ # 	page = requests.get(url)
+ #    soup = BeautifulSoup(page.text, 'html.parser')
 
-def get_countries_data():
+
+def get_countries_data(url):
     countries = {}
-    url = "https://www.worldometers.info/coronavirus/"
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'html.parser')
-    table = soup.find(id="main_table_countries_today")
+    table = soup.find("table")
     table_body = table.find("tbody")
     rows = table_body.find_all("tr")
     for row in rows:
         feilds = row.find_all("td")
-        countries[feilds[0].text] = {
-            "total_cases": feilds[1].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "new_cases": feilds[2].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "total_deaths": feilds[3].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "new_deaths": feilds[4].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "total_recovered": feilds[5].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "active_cases": feilds[6].text.replace(",", "").replace("+", "").replace(" ", ""),
-            "serious": feilds[7].text.replace(",", "").replace("+", "").replace(" ", "")
+        countries[feilds[0].text.replace(" ", "").replace("\n", "")] = {
+            "total_cases": feilds[1].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "new_cases": feilds[2].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "total_deaths": feilds[3].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "new_deaths": feilds[4].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "total_recovered": feilds[5].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "active_cases": feilds[6].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", ""),
+            "serious": feilds[7].text.replace(",", "").replace("+", "").replace(" ", "").replace("\n", "") if len(feilds) >= 8 else 0
         }
     return countries
 
@@ -92,34 +98,69 @@ def db_test(data):
     db.collection("cororna-virus").document("data").set(data)
 
 
+def get_updates():
+    url = "https://bnonews.com/index.php/2020/03/the-latest-coronavirus-cases/"
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    block = soup.find(id="mvp-content-main")
+    dates = block.find_all("h4")
+    updates = block.find_all("ul")[3:]
+    data = []
+    for i in range(len(dates)):
+        a = {"date": dates[i].text, "logs": []}
+        titles = updates[i].find_all("li")
+        for title in titles:
+            a["logs"].append({"title": title.text[7:title.text.find("Source")-1], "time": title.text[0:7],
+                              "source": title.find("a", href=True)["href"] if title.find("a", href=True) else "none"})
+        data.append(a)
+    print(data)
+    return data
+
+
 def init():
     data = {}
-    all_countries = get_countries_data()
+    all_countries = get_countries_data(
+        "https://www.worldometers.info/coronavirus/")
+    usa_data = get_countries_data(
+        "https://www.worldometers.info/coronavirus/country/us/")
     overview = get_overview()
     death_rate = get_death_rate()
     data["all_countries"] = all_countries
+    data["usa_data"] = usa_data
     data["overview"] = overview
     data["death_rate"] = death_rate
+    try:
+        updates = get_updates()
+        data["updates"] = updates
+    except:
+        data["updates"] = {}
     db_test(data)
 
 
-# init()
+counter=0
+
+while true:
+	print("fetching...")
+	init()
+	counter+=1
+	print("done ",counter)
+	time.sleep(3000)
 
 
-class MainApp(App):
-    def build(self):
-        button = Button(text='Hello from Kivy',
-                        size_hint=(.5, .5),
-                        pos_hint={'center_x': .5, 'center_y': .5})
-        button.bind(on_press=self.on_press_button)
+# class MainApp(App):
+#     def build(self):
+#         button = Button(text='Hello from Kivy',
+#                         size_hint=(.5, .5),
+#                         pos_hint={'center_x': .5, 'center_y': .5})
+#         button.bind(on_press=self.on_press_button)
 
-        return button
+#         return button
 
-    def on_press_button(self, instance):
-        init()
-        print('Done')
+#     def on_press_button(self, instance):
+#         init()
+#         print('Done')
 
 
-if __name__ == '__main__':
-    app = MainApp()
-    app.run()
+# if __name__ == '__main__':
+#     app = MainApp()
+#     app.run()
